@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import API_KEY from './config';
 import './WeatherCard.css'; // Import the CSS file
+import { Container, Row, Col } from 'react-bootstrap';
 
 const WeatherCard = ({ city }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -33,18 +34,36 @@ const WeatherCard = ({ city }) => {
   }, [city]);
 
   return (
-    <div className="weather-card">
-      <div className="weather-image" style={{ backgroundImage: `url(${cityImage})` }}></div>
-      <div className="weather-details">
-        {weatherData && (
-          <>
-            <h2>{weatherData.name}</h2>
-            <p>Temperature: {weatherData.main.temp}°C</p>
-            <p>Description: {weatherData.weather[0].description}</p>
-          </>
-        )}
-      </div>
-    </div>
+    // <div className="weather-card">
+    //   <div className="weather-image" style={{ backgroundImage: `url(${cityImage})` }}></div>
+    //   <div <className="weather-details">>
+    //     {weatherData && (
+    //       <>
+    //         <h2>{weatherData.name}</h2>
+    //         <p>Temperature: {weatherData.main.temp}°C</p>
+    //         <p>Description: {weatherData.weather[0].description}</p>
+    //       </>
+    //     )}
+    //   </div>
+    // </div>
+    <>
+    <Container>
+      <Row>
+        <Col className="weather-image" style={{ backgroundImage: `url(${cityImage})`,width:'100%', height:'50rem' }}></Col>
+      </Row>
+      <Row>
+        <Col className="weather-details">
+          {weatherData && (
+            <>
+              <h2>{weatherData.name}</h2>
+              <p>Temperature: {weatherData.main.temp}°C</p>
+              <p>Description: {weatherData.weather[0].description}</p>
+            </>
+          )}
+        </Col>
+      </Row>
+    </Container>
+    </>
   );
 };
 
