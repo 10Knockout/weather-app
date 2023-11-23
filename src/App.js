@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import WeatherCard from './weatherCard';
 
 function App() {
+  const [city, setCity] = useState('');
+
+  const handleInputChange = (e) => {
+    setCity(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Weather App</h1>
+      <input
+        type="text"
+        placeholder="Enter city name"
+        value={city}
+        onChange={handleInputChange}
+      />
+      <div className="weather-cards">
+        {city && <WeatherCard city={city} />}
+      </div>
     </div>
   );
 }
